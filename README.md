@@ -1,2 +1,2 @@
 # Neflix-clone
-# Simple Netflix clone with blue colorscheme
+# Link to website:https://netflix-clone-97eec.web.app/
