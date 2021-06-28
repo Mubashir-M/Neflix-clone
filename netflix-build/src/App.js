@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
@@ -11,17 +11,18 @@ import {
 import { auth } from './firebase'
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout, selectUser } from './features/userSlice'
+import db from './firebase'
 
 
 
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const [subscription, SetSubscription] = useState(null)
 
   useEffect(() => {
     const unsubscribe =  auth.onAuthStateChanged(userAuth => {
       if (userAuth) {
-        console.log(userAuth);
         dispatch(
           login({
             uid: userAuth.uid,
@@ -29,13 +30,25 @@ function App() {
           })
         );
 
+        db.collection('customers')
+        .doc(userAuth.uid)
+        .collection('subscriptions')
+        .get()
+        .then (querySnapshot => {
+          querySnapshot.forEach(async subscription => {
+            localStorage.setItem('subscription', subscription.data().role)
+            SetSubscription(subscription.data().role)
+          });
+        })
+
       } else {
         dispatch(logout());
       }
     });
 
     return unsubscribe;
-  },[dispatch]);
+  },[dispatch, subscription]);
+
 
   
   return (
