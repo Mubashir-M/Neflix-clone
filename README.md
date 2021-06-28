@@ -7,7 +7,7 @@
 * [Setup](#setup)
 
 ## General info
-This project is a clone of entflix that utilizes the TMDb api  for movies.
+This project is a clone of Netflix that utilizes the TMDb api  for movies.
 ## Technologies
 Project is created with:
 * Javascript + ReactJS
@@ -16,15 +16,15 @@ Project is created with:
 
 ## Scope of functionalities
 ### Features
-* Register and Login
+* Register and Login.
 * Purchase a subscription plan.
-* Allows changing subscription plan
-* Shows  list of movies after subscription
+* Allows changing subscription plan.
+* Shows  list of movies after subscription.
 
 	
 ## Setup
 To run this project
-* Set up a firebase account to to configure the firebase.js file.
+* Set up a firebase account to configure the firebase.js file.
 * Set up a stripe account to allow own subscription plan.
 * Install it locally using npm:
 
